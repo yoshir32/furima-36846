@@ -1,24 +1,94 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| nickname             | string     | null: false                    |
+| email                | string     | null: false, unique: true      |
+| password             | string     | null: false                    |
+| password_confirmation| string     | null: false                    |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_one :profile
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-* Configuration
+## profilesテーブル
 
-* Database creation
+| user_id              | reference  | null: false, foreign_key: true  |
+| first_name           | string     | null: false                     |
+| first_name_kana      | string     | null: false                     |
+| last_name            | string     | null: false                     |
+| last_name_kana       | string     | null: false                     |
+| birthday             | date       | null: false                     |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## itemsテーブル
 
-* ...
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| user_id              | reference  | null: false, foreign_key: true |
+| image                | blob       | null: false                    |
+| item_name            | string     | null: false                    |
+| item_description     | text       | null: false                    |
+| category             | string     | null: false                    |
+| status               | string     | null: false                    |
+| delivery_charge      | integer    | null: false                    |
+| ship_from            | string     | null: false                    |
+| necessary_time       | integer    | null: false                    |
+| price                | integer    | null: false                    |
+
+### Association
+
+- belongs_to :user
+- has_many :comments
+- has_one :order
+
+## commentsテーブル
+
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| text                 | text       | null:false                     |
+| item_id              | reference  | null: false, foreign_key: true |
+| user_id              | reference  | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## ordersテーブル
+
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| item_id              | reference  | null: false, foreign_key: true |
+| user_id              | reference  | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
+
+
+## shipping_addressテーブル
+
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| post_code            | integer    | null: false                    |
+| prefecture           | string     | null: false                    |
+| municipality         | string     | null: false                    |  
+| street_number        | string     | null:false                     |
+| building             | string     |                                |
+| telephone            | integer    | null: false                    |
+
+### Association
+
+- belongs_to :order
