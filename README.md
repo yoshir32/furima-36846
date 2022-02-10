@@ -8,17 +8,7 @@
 | email                | string     | null: false, unique: true      |
 | password             | string     | null: false                    |
 | password_confirmation| string     | null: false                    |
-
-### Association
-
-- has_one :profile
-- has_many :items
-- has_many :comments
-- has_many :orders
-
-## profilesテーブル
-
-| user_id              | reference  | null: false, foreign_key: true  |
+| user                 | references  | null: false, foreign_key: true  |
 | first_name           | string     | null: false                     |
 | first_name_kana      | string     | null: false                     |
 | last_name            | string     | null: false                     |
@@ -27,22 +17,23 @@
 
 ### Association
 
-- belongs_to :user
+- has_many :items
+- has_many :comments
+- has_many :orders
 
 
 ## itemsテーブル
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| user_id              | reference  | null: false, foreign_key: true |
-| image                | blob       | null: false                    |
+| user                 | references  | null: false, foreign_key: true |
 | item_name            | string     | null: false                    |
 | item_description     | text       | null: false                    |
-| category             | string     | null: false                    |
-| status               | string     | null: false                    |
-| delivery_charge      | integer    | null: false                    |
-| ship_from            | string     | null: false                    |
-| necessary_time       | integer    | null: false                    |
+| category_id          | integer    | null: false                    |
+| status_id            | integer    | null: false                    |
+| delivery_charge_id   | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
+| necessary_time_id    | integer    | null: false                    |
 | price                | integer    | null: false                    |
 
 ### Association
@@ -56,8 +47,8 @@
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | text                 | text       | null:false                     |
-| item_id              | reference  | null: false, foreign_key: true |
-| user_id              | reference  | null: false, foreign_key: true |
+| item                 | references  | null: false, foreign_key: true |
+| user                 | references  | null: false, foreign_key: true |
 
 ### Association
 
@@ -68,8 +59,8 @@
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| item_id              | reference  | null: false, foreign_key: true |
-| user_id              | reference  | null: false, foreign_key: true |
+| item                 | references  | null: false, foreign_key: true |
+| user                 | references  | null: false, foreign_key: true |
 
 ### Association
 
@@ -82,12 +73,13 @@
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
+| order                | references  | null: false, foreign_key: true |
 | post_code            | integer    | null: false                    |
-| prefecture           | string     | null: false                    |
+| prefecture_id        | integer    | null: false                    |
 | municipality         | string     | null: false                    |  
 | street_number        | string     | null:false                     |
 | building             | string     |                                |
-| telephone            | integer    | null: false                    |
+| telephone            | string     | null: false                    |
 
 ### Association
 
