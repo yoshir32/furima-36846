@@ -24,8 +24,11 @@ RSpec.describe User, type: :model do
         expect(user.errors.full_messages).to include("Email can't be blank")
       end
       it "既に登録されているメールアドレスでは登録できない" do
-    
-
+        user = User.new(nickname: "てすと", email: "ttt@email", password: "ttt333", password_confirmation: "ttt333", first_name: "ててて", last_name: "すすす", first_name_kana: "テテテ", last_name_kana: "ススス", birthday: 1980-04-05)
+        user.save
+        #another_user = User.new(nickname: "あなざ", email: "ttt@email", password: "aaa333", password_confirmation: "aaa333", first_name: "あああ", last_name: "ななな", first_name_kana: "アアア", last_name_kana: "ナナナ", birthday: 1981-05-06)
+        #another_user.valid?
+        binding.pry
 
       end
       it "＠を含まないメールアドレスは登録できない" do
