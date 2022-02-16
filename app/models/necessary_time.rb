@@ -1,4 +1,4 @@
-class Necessary_time < ActiveHash::Base
+class NecessaryTime < ActiveHash::Base
 
   self.data = [
     { id: 1, name: '--' },
