@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NecessaryTime < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
