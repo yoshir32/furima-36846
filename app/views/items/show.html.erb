@@ -11,7 +11,7 @@
 <%
 =begin
 %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <%# 商品が売れている場合は、sold outを表示しましょう if @user.order.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
@@ -30,17 +30,16 @@
       </span>
     </div>
 
-    <% if user_signed_in? && current_user.id == @item.user_id %>
+    <% if user_signed_in? #&& @user.order.blank?#%>
+      <% if current_user.id == @item.user_id %>
 
-    <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
 
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-
-
+      <% else %>
+        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
     <div class="item-explain-box">
