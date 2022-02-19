@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order('created_at DESC')
-   
   end
 
   def new
@@ -22,9 +21,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-      @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
-
 
   private
 
@@ -33,15 +31,3 @@ class ItemsController < ApplicationController
                                  :prefecture_id, :necessary_time_id, :price, :image).merge(user_id: current_user.id)
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
