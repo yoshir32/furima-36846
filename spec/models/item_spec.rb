@@ -38,27 +38,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it 'カテゴリーの情報がないと出品できない' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
       it '商品の状態の情報がないと出品できない' do
-        @item.status_id = ''
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Status can't be blank"
       end
       it '配送料の負担の情報がないと出品できない' do
-        @item.delivery_charge_id = ''
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Delivery charge can't be blank"
       end
       it '発送元地域の情報がないと出品できない' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
       it '発送までの日数の情報がないと出品できない' do
-        @item.necessary_time_id = ''
+        @item.necessary_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Necessary time can't be blank"
       end
