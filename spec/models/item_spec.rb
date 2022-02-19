@@ -19,8 +19,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザー情報がないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
-        
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
       it '商品名がないと出品できない' do
         @item.item_name = ''
