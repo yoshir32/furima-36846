@@ -13,9 +13,8 @@ class OrdersController < ApplicationController
     if @order_address.valid?
       @order_address.save
       redirect_to root_path
- 
-
-
+    else
+      render :index
     end
   end
 
