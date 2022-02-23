@@ -2,7 +2,7 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :municipality, :street_number, :building, :telephone
 
-  with_option presence: true do
+  with_options presence: true do
     validates :user_id
     validates :item_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -13,8 +13,8 @@ class OrderAddress
   end
 
   def save
-    oder = Oder.create(user_id: user_id, item_id: item_id)
-    Address.create(post_code: post_codem, prefecture_id: prefecture_id, municipality: municipality, street_number: street_number, building: builidng, telephone: telephone, order_id, order.id)
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create(post_code: post_code, prefecture_id: prefecture_id, municipality: municipality, street_number: street_number, building: builidng, telephone: telephone, order_id: order.id)
 
   end
 
