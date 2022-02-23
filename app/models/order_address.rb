@@ -9,7 +9,8 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :municipality
     validates :street_number
-    validates :telephone, length: { minimum:10, maximum: 11 }
+    validates :telephone, length: { minimum:10, maximum: 11, message: "" }
+    validates :telephone, format: { with: /\A\d{10,11}\z/ }
   end
 
   def save
