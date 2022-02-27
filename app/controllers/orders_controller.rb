@@ -42,6 +42,9 @@ class OrdersController < ApplicationController
   def move_top
     if current_user == @item.user
       redirect_to root_path
+    else
+      @order_address.presence
+      redirect_to root_path
     end
   end
 
