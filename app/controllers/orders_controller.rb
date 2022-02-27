@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_item
   before_action :authenticate_user!
   before_action :move_top
+  before_action :go_top
  
   def index
     @order_address = OrderAddress.new
@@ -42,8 +43,12 @@ class OrdersController < ApplicationController
   def move_top
     if current_user == @item.user
       redirect_to root_path
-    else
-      @order_address.presence
+    
+    end
+  end
+
+  def go_top
+    if @order_address.present?
       redirect_to root_path
     end
   end
