@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_item
   before_action :authenticate_user!
+  before_action :move_top
  
   def index
     @order_address = OrderAddress.new
@@ -36,6 +37,12 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_top
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
 end
