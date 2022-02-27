@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def go_top
-    if @order_address.present?
+    if @item.order.present?
       redirect_to root_path
     end
   end
