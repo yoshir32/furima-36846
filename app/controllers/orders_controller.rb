@@ -2,10 +2,10 @@ class OrdersController < ApplicationController
   before_action :set_item
   before_action :authenticate_user!
   before_action :move_top
-  before_action :go_top
  
   def index
     @order_address = OrderAddress.new
+    go_top
   end
 
 
