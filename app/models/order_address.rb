@@ -9,9 +9,8 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank", allow_blank: true }
     validates :municipality
     validates :street_number
-    validates :telephone
     validates :telephone, format: { with: /\A\d{10,11}\z/}, allow_blank: true
-    validates :token, presence: true
+    validates :token
   end
 
   def save
