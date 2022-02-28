@@ -57,11 +57,16 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Telephone is invalid"
       end
-      it '電話番号は、10桁以上11桁以内でないと購入できない' do
+      it '電話番号は、10桁以上でないと購入できない' do
         @order_address.telephone = '123'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Telephone is invalid"
       end
+      it '電話番号は、11桁以下でないと購入できない' do
+        @order_address.telephone = '123456789123'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Telephone is invalid"
+      end 
       it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?

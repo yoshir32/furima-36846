@@ -10,7 +10,6 @@ class OrderAddress
     validates :municipality
     validates :street_number
     validates :telephone
-    validates :telephone, length: { minimum:10, maximum: 11, message: "is invalid"}, allow_blank: true
     validates :telephone, format: { with: /\A\d{10,11}\z/}, allow_blank: true
     validates :token, presence: true
   end
